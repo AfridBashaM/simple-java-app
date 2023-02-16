@@ -14,6 +14,17 @@ pipeline{
                 }
             }
         }
+        
+        stage (SCA) {
+            
+            steps{
+                
+                sh 'dependencyCheck additionalArguments: '', odcInstallation: 'owasp dependency''
+                
+            }
+           
+        }
+        
         stage('UNIT testing'){
             
             steps{
