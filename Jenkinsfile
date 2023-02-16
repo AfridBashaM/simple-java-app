@@ -15,7 +15,7 @@ pipeline{
             }
         }
         
-        stage (SCA) {
+        stage('SCA'){
             
             steps{
                 
