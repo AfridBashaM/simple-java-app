@@ -72,13 +72,13 @@ pipeline{
                     
                 }
             }
-            stage('Quality Gate Status'){
+            stage('Deploy to tomcat'){
                 
                 steps{
                     
                     script{
                         
-                        waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
+                        deploy adapters: [tomcat9(path: '', url: 'http://52.66.142.113:8080/')], contextPath: '/prod/apache-tomcat-9.0.71/webapps', war: ''
                     }
                 }
             }
