@@ -68,20 +68,20 @@ pipeline{
                         
                         sh 'mvn clean package sonar:sonar'
                     }
-                   }
-                    
-                }
-            }
-            stage('Deploy to tomcat'){
+                 }
+             }
+         }
+         stage ('Deploy-To-Tomcat') {
+             
+            steps {
                 
-                steps{
+                sshagent(['tomcat']) {
                     
-                    script{
-                        
-                        deploy adapters: [tomcat9(path: '', url: 'http://52.66.142.113:8080/')], contextPath: '/prod/apache-tomcat-9.0.71/webapps', war: ''
-                    }
-                }
-            }
-        }
+                sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@52.66.142.113:/prod/apache-tomcat-9.0.71/webapps/webapp.war'
+                    
+                }      
+            }       
+         }
+    }
         
 }
