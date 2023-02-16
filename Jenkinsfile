@@ -21,7 +21,7 @@ pipeline{
                 
                 script{
                     
-                    'dependencyCheck additionalArguments: '', odcInstallation: 'owasp dependency'
+                    dependencyCheck additionalArguments: '', odcInstallation: 'owasp dependency'
                 }
                                              
             }
