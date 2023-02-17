@@ -75,7 +75,7 @@ pipeline{
              
             steps {
                 
-              deploy adapters: [tomcat9(path: '', url: 'http://52.66.142.113:8080/')], contextPath: '/prod/apache-tomcat-9.0.71/webapps/simple-java-app', war: '**/*.war'      
+              deploy adapters: [tomcat9(credentialsId: '1223df4e-4823-4a39-ad2e-36f53efa10ac', path: '', url: 'http://52.66.142.113:8080/')], contextPath: 'simple-java-app', war: '**/*.war'      
               }       
             }
         
