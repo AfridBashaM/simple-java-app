@@ -58,7 +58,7 @@ pipeline{
                 }
             }
         }
-        stage('Static code analysis'){
+        stage('SAST'){
             
             steps{
                 
@@ -75,7 +75,8 @@ pipeline{
              
             steps {
                 
-              deploy adapters: [tomcat9(path: '', url: 'http://52.66.142.113:8080/')], contextPath: '/prod/apache-tomcat-9.0.71/webapps/', war: '**/*.war'      
+              sshagent(['tomcat']) {
+                sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@52.66.142.113:/prod/apache-tomcat-9.0.71/webapps/simple-java-app.war'      
             }       
          }
     }
